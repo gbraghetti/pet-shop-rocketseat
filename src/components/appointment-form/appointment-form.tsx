@@ -94,8 +94,9 @@ export const AppointmentForm = ({
 }: AppointmentFormProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const form = useForm<AppointmentFormValues>({
-    // @ts-expect-error @hookform/resolvers@5.2.2 não suporta Zod 4.4.x nos tipos (_zod.version.minor incompatível), mas funciona em runtime
-    resolver: zodResolver(appointmentFormSchema),
+    // @hookform/resolvers@5.2.2 não suporta Zod 4.4.x nos tipos (_zod.version.minor incompatível), mas funciona em runtime
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(appointmentFormSchema as any),
     defaultValues: {
       tutorName: "",
       petName: "",
